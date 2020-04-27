@@ -33,6 +33,15 @@ $(document).ready(function () {
 
   var nextQuestion = document.querySelector("#nextQuestion");
 
+  renderAnswers();
+  function renderAnswers(answers) {
+    var answersList = document.querySelector("#inputGroupSelect01");
+    for (var i = 0; i < .length; i++) {
+      var answer = answers[i];
+      console.log(answer);
+    }
+  }
+
   renderQuestions();
 
   function renderQuestions() {
