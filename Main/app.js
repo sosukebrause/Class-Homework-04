@@ -1,20 +1,18 @@
-// function getQuestion() {
-//   var currentQuestion = quiz[currentQuestionIndex];
-// }
+// how add multiple items into an obect variable, key
+//how to call multiple object variable keys at once
 
 $(document).ready(function () {
   var questions = [
     {
       title: "q1",
       content: "This is the first question",
-      choices: ["cdcdc", "wqqw", "qwq", "qwwq"],
+      choices: ["aaa", "bbb", "ccc"],
       answer: "",
     },
     {
       title: "q2",
       content: "This is the second question",
-
-      choices: ["cdcdc", "wqqw", "qwq", "qwwq"],
+      choices: ["aaa", "bbb", "ccc"],
       answer: "",
     },
   ];
