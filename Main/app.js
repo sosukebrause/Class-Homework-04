@@ -1,52 +1,56 @@
+// function getQuestion() {
+//   var currentQuestion = quiz[currentQuestionIndex];
+// }
+
 $(document).ready(function () {
   var questions = [
-    "This is the first question",
-    "This is the second question",
-    "This is the third question",
+    {
+      title: "q1",
+      content: "This is the first question",
+      choices: ["cdcdc", "wqqw", "qwq", "qwwq"],
+      answer: "",
+    },
+    {
+      title: "q2",
+      content: "This is the second question",
+
+      choices: ["cdcdc", "wqqw", "qwq", "qwwq"],
+      answer: "",
+    },
   ];
   console.log(questions);
 
-  // var quiz = [
-  //   {
-  //     title: "q1",
-  //     description: "",
-  //     choices: ["", "", "", ""],
-  //     answer: "",
-  //   },
-  // ];
-
-  // function getQuestion() {
-  //   var currentQuestion = quiz[currentQuestionIndex];
-  // }
   var count = 0;
-  $("#question").text(questions[count]);
+  $("#question").text(questions[count].content);
   $("#nextQuestion").on("click", function () {
     count++;
+    if (count === questions.length) {
+      count = 0;
+    }
+    var questionCountSpan = document.querySelector("#question-count");
+    questionCountSpan.textContent = count + 1;
 
-    $("#question").text(questions[count]);
+    $("#question").text(questions[count].content);
   });
 
-  var questionCountSpan = document.querySelector("#question-count");
   var nextQuestion = document.querySelector("#nextQuestion");
 
   renderQuestions();
 
   function renderQuestions() {
-    questions.innerHTML = "";
-    questionCountSpan.textContent = questions.length;
     var questionsList = document.querySelector("#questions-list");
 
     for (var i = 0; i < questions.length; i++) {
-      var question = questions[i];
+      var content = content[i];
 
       var li = document.createElement("li");
-      li.textContent = question;
+      li.textContent = content;
       questionsList.appendChild(li);
     }
   }
 
   nextQuestion.addEventlistener("click", function (event) {
     event.preventDefault();
-    question = question[0];
+    question = questions[0];
   });
 });
