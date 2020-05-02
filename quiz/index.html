@@ -5,19 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>myQuestions</title>
   </head>
-  <body>
+  <body style="margin: 30px;">
     <div id="quiz"></div>
     <div id="clock"></div>
-    <form>
-      <input id="input" type="text" placeholder="Name" />
-      <button id="beginbtn" type="submit">Continue</button>
-      <!-- <button id="nextQuestion" type="submit">Next</button> -->
+    <div id="counter"></div>
+    <form style="float: center;">
+      <button id="beginbtn" type="submit">
+        Begin
+      </button>
     </form>
     <h5 id="question"></h5>
 
-    <div id="options">
-      <select class="custom-select" id="inputGroupSelect01"></select>
-    </div>
+    <div id="options"></div>
 
     <script
       src="https://code.jquery.com/jquery-3.5.0.slim.js"
