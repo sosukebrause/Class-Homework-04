@@ -1,0 +1,25 @@
+.container .row {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+#counter {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 0rem;
+  border-bottom: none;
+}
+
+#question {
+  margin-top: 2rem;
+  margin-left: 2rem;
+}
+
+#clock {
+  font-size: small;
+  text-align: end;
+  border-top: none;
+}

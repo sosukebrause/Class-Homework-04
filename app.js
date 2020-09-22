@@ -1,37 +1,50 @@
-console.log("POW");
-let dum = 0;
-while (dum <= 7) {
-  // console.log(dum);
-}
 var quiz = {
   question: [
-    "Which of following is not 'reserved for use' as binding names in JavaScript?",
+    "Which of following is not 'reserved' as binding names in JavaScript?",
     "Indenting or adding spaces in front of statements that are part of a larger statement is required for the program to work",
-    "Which of the following uses the conventional style of capitalizing when writing binding names?",
+    "Which of the following uses the conventional style of capitalizing when creating variables?",
     "whats wrong with you?",
-    "how old are you?",
-    "When writing a function, you  can put three dots before the function's last parameter to “spread” out the array into the function call, passing its elements as separate arguments.",
+    "Approximately when was html released?",
+    "You can put three dots before the function's last parameter to “spread” out the array into the function call, passing its elements as separate arguments.",
+    "Which of the following is not a property for layout options using CSS?",
+    "Which of the following is not an iterating loop in JavaScript?",
+    "How many moons are on venus?",
+    "What percentage of the world population does the US account for?",
+    "In recent years the US has held up to 25% of the entire world's correctional population. White Americans comprise of about 65% of the population, hispanics 23% black Americans about 13%. How are these groups represented by their incarceration rates from least to greatest?",
   ],
   options: {
     list: [
       ["Finally", "Extra", "Void"],
       ["True", "False", "Triple dog dare"],
-      ["PoopInHats", "I_YELL_ALOT", "grammerJew"],
+      ["PoopInHats", "WEYELLALOT", "grammerJew"],
       ["Nothing", "Everything", "beat around bush"],
-      ["31", "13", "Go away"],
+      ["1988-1990", "1990-92", "1992-1994"],
       ["Yep", "Nope", "`I like to live dangerously`"],
+      ["Flex", "Float", "Flick"],
+      ["for/of", "do/while", "each/of"],
+      ["8", "14", "None"],
+      ["Less than 5%", "Around 10%", "More than 15%"],
+      [
+        "Black > 30%; Hispanic > 20%; White < 15%",
+        "White < 15%; Black > 30%; Hispanic > 20%",
+        "White < 15%; Hispanic > 20%; Black > 30%",
+      ],
     ],
   },
-  correct: [1, 2, 3, 1, 1, 1],
+  correct: [1, 2, 3, 1, 3, 1, 3, 3, 1, 3],
 };
 var intervalID;
-var count = 100;
+var count = 180;
 let q = 0;
 var score = 0;
 
 $(document).ready(function () {
+  hideCard();
+  $(".result").hide();
+
   $("#beginbtn").on("click", function (event) {
     event.preventDefault();
+    showCard();
     renderQuestions();
     renderOptions();
     renderCount();
@@ -43,9 +56,8 @@ $(document).ready(function () {
 
 function renderQuestions() {
   var q1 = $("<p></p>").text(quiz.question[q]);
-  var txt3 = document.createElement("p");
-  txt3.innerHTML = "JavaScript"; // Create text with DOM
-  $("#question").prepend(txt3, q1); // Append new elements
+  // Create text with DOM
+  $("#question").prepend(q1); // Append new elements
 }
 function renderOptions() {
   var opt1 = quiz.options.list[q][0];
@@ -61,13 +73,13 @@ function renderOptions() {
   $("#options").prepend(options);
 }
 function renderCount() {
-  $("#counter").html(`<p>Question: ${q + 1} </p>`);
+  $("#counter").html(`Question: ${q + 1}/10`);
 }
 
 function nextQuestionButton() {
-  var nextBtn = $(`<button id="nextBtn" style="float: right;">`);
-  nextBtn.text("Next Question");
-  $("body").append(nextBtn);
+  var nextBtn = $(`<button id="nextBtn">`);
+  nextBtn.text("Continue");
+  $(".continue").append(nextBtn);
   $("#nextBtn").on("click", function (event) {
     event.preventDefault();
     const answer = parseInt($(".custom-select").val());
@@ -75,6 +87,10 @@ function nextQuestionButton() {
     if (answer === -1) {
       alert("Choose an answer to continue");
       return;
+    }
+    if (q === 1) {
+      // count = 0;
+      stop();
     }
     checkAnswer(answer);
     $("p").remove();
@@ -89,44 +105,41 @@ function nextQuestionButton() {
 function checkAnswer(answer) {
   if (answer !== quiz.correct[q]) {
     count -= 10;
-    alert("Wrong. Minus 10 seconds.");
+    alert("Incorrect. Minus 10 seconds.");
   } else {
     score++;
+    alert("Correct!");
   }
-
-  // for
-  //   if (parseInt($(".custom-select").val()) === 1) {
-  //   } else {
-  //     count -= 10;
-  //   }
 }
-
-// function showNext() {
-//   count = 1;
-//   for (i = 1; i < 5; i++) {
-//     if (quiz.question[i] == 1) count++;
-//     var q = $("<p></p>").text(quiz.question[i]);
-//     $("h5").append(q);
-//   }
-//   console.log(count);
-// }
 
 function runTimer() {
   intervalID = setInterval(decrement, 1000);
 }
 function decrement() {
   count--;
-  $("#clock").html("<h2>You have " + count + " seconds remaining</h2>");
+  $("#clock").html(
+    "<p>You have " + count + " seconds remaining to complete quiz</p>"
+  );
   if (count === 0) {
     $("#clock").hide();
     stop();
   }
 }
+
 function stop() {
   clearInterval(intervalID);
+  $("#result").append(`You got ${score}/10 correct`);
+  hideCard();
+  $(".result").show();
 }
 function hideForm() {
-  $("form").hide();
+  $("#beginbtn").hide();
+}
+function hideCard() {
+  $(".card").hide();
+}
+function showCard() {
+  $(".card").show();
 }
 
 // $("#nextQuestion").on("click", function () {

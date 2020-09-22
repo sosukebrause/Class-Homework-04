@@ -3,6 +3,86 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>myQuestions</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+   
+
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h3 class="display-4">3 Minute Code Quiz</h3>
+        <p class="lead">
+          Beginner questions on Javascript, HTML, and CSS. Featuring a timer
+          that penalizes incorrect answers!
+        </p>
+        <div class="d-flex justify-content-center">
+          <a
+            class="btn btn-primary btn-sm text-center"
+            id="beginbtn"
+            href="#"
+            role="button"
+            >Start Quiz</a
+          >
+        </div>
+      </div>
+    </div>
+    <!-- CARD -->
+    <div class="card">
+      <p class="card-header" id="counter"></p>
+      <div id="quiz text-center">
+        <h5 id="question"></h5>
+        <div class="container">
+          <div class="row">
+            <div class="col-6" id="options"></div>
+            <div class="col-2 continue"></div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer" id="clock">
+        <!-- <p id="clock"></p> -->
+      </div>
+    </div>
+    <!-- CARD END -->
+
+    <div
+      class="alert alert-warning fade show result"
+      role="alert" style="text-align: center"
+    >
+      <strong id="result"></strong>
+       Come back soon for more challenges!
+      
+        <a
+          class="btn btn-secondary btn-sm text-center"
+          href="."
+          role="button"
+          >Try again</a
+        >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.5.0.slim.js"
+      integrity="sha256-sCexhaKpAfuqulKjtSY7V9H7QT0TCN90H+Y5NlmqOUE="
+      crossorigin="anonymous"
+    ></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -48,4 +128,4 @@
     </div>
     <script src="app.js"></script>
   </body>
-</html>
+</html> -->
