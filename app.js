@@ -37,6 +37,16 @@ var intervalID;
 var count = 180;
 let q = 0;
 var score = 0;
+var userInitials = localStorage.getItem("userInitials");
+var highScore = localStorage.getItem("highScore");
+
+function displayLocalStorage() {
+  userInitials;
+  highScore;
+  $("#userId").text(userInitials);
+  $("#highScore").text(highScore);
+}
+displayLocalStorage();
 
 $(document).ready(function () {
   hideCard();
@@ -47,7 +57,6 @@ $(document).ready(function () {
     showCard();
     renderQuestions();
     renderOptions();
-    renderCount();
     nextQuestionButton();
     hideForm();
     runTimer();
@@ -55,6 +64,8 @@ $(document).ready(function () {
 });
 
 function renderQuestions() {
+  $("#counter").html(`Question: ${q + 1}/10`);
+
   var q1 = $("<p></p>").text(quiz.question[q]);
   // Create text with DOM
   $("#question").prepend(q1); // Append new elements
@@ -72,9 +83,6 @@ function renderOptions() {
     `;
   $("#options").prepend(options);
 }
-function renderCount() {
-  $("#counter").html(`Question: ${q + 1}/10`);
-}
 
 function nextQuestionButton() {
   var nextBtn = $(`<button id="nextBtn">`);
@@ -88,14 +96,15 @@ function nextQuestionButton() {
       alert("Choose an answer to continue");
       return;
     }
-    if (q === 1) {
-      // count = 0;
-      stop();
-    }
+
     checkAnswer(answer);
     $("p").remove();
     $(".custom-select").remove();
     q++;
+    if (q === 3) {
+      // count = 0;
+      stop();
+    }
     renderQuestions();
     renderOptions();
     renderCount();
@@ -126,12 +135,6 @@ function decrement() {
   }
 }
 
-function stop() {
-  clearInterval(intervalID);
-  $("#result").append(`You got ${score}/10 correct`);
-  hideCard();
-  $(".result").show();
-}
 function hideForm() {
   $("#beginbtn").hide();
 }
@@ -142,8 +145,45 @@ function showCard() {
   $(".card").show();
 }
 
+function saveScore() {
+  $("#save").on("click", function () {
+    var userInitials = $("#userInitials").val();
+
+    if (score < highScore) {
+      alert("You did not get the high score, please try again.");
+      $("#userInitials").val() = "";
+      window.location.reload();
+    } else {
+      alert("Congratulations, you currently have the highest score");
+
+      localStorage.setItem("userInitials", userInitials);
+      localStorage.setItem("highScore", score);
+      displayLocalStorage();
+    }
+    $("#userInitials").val() = "";
+    window.location.reload();
+  });
+}
+
+function stop() {
+  clearInterval(intervalID);
+  hideCard();
+  $(".result").show();
+  $("#result").append(`You got ${score}/10 correct`);
+
+  if (score < highScore) {
+    $("#score").append("You scored below the high score");
+  } else {
+    $("#score").append("Congratulations, you've gotten the highest score");
+    $("#userId").append(userInitials);
+    $("#score").append(highScore);
+    // displayLocalStorage();
+  }
+  saveScore();
+}
+
 // $("#nextQuestion").on("click", function () {
 //   count++;
 //   if (count === questions.length) {
 //     count = 0;
-//   }
+// }

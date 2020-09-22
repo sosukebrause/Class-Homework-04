@@ -14,8 +14,6 @@
     />
   </head>
   <body>
-   
-
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
         <h3 class="display-4">3 Minute Code Quiz</h3>
@@ -34,39 +32,54 @@
         </div>
       </div>
     </div>
-    <!-- CARD -->
-    <div class="card">
-      <p class="card-header" id="counter"></p>
-      <div id="quiz text-center">
-        <h5 id="question"></h5>
-        <div class="container">
-          <div class="row">
-            <div class="col-6" id="options"></div>
-            <div class="col-2 continue"></div>
+    <div class="main">
+
+
+      <!-- CARD -->
+      <div class="card">
+        <p class="card-header" id="counter"></p>
+        <div id="quiz text-center">
+          <h5 id="question"></h5>
+          <div class="container">
+            <div class="row">
+              <div class="col-6" id="options"></div>
+              <div class="col-2 continue"></div>
+            </div>
           </div>
         </div>
+        <div class="card-footer" id="clock">
+          <!-- <p id="clock"></p> -->
+        </div>
       </div>
-      <div class="card-footer" id="clock">
-        <!-- <p id="clock"></p> -->
-      </div>
-    </div>
-    <!-- CARD END -->
+      <!-- CARD END -->
 
-    <div
-      class="alert alert-warning fade show result"
-      role="alert" style="text-align: center"
-    >
-      <strong id="result"></strong>
-       Come back soon for more challenges!
-      
-        <a
-          class="btn btn-secondary btn-sm text-center"
-          href="."
-          role="button"
+      <div
+        class="alert alert-warning fade show result"
+        role="alert"
+        style="text-align: center"
+      >
+        <strong id="result"></strong>
+        Come back soon for more challenges!
+
+        <a class="btn btn-secondary btn-sm text-center" href="." role="button"
           >Try again</a
         >
-        <span aria-hidden="true">&times;</span>
-      </button>
+        <!-- <span aria-hidden="true">&times;</span> -->
+        <hr></hr>
+        <h5>User: <span id="userId"></span></h5>
+        <h5>Highscore: <span id="highScore"></span></h5>
+        <span id="score"></span>
+        <span>Enter initials to save score</span>
+        <input type="text" id="userInitials" />
+        <button
+          class="btn btn-success btn-md text-center"
+          id="save"
+          type="submit"
+          href="."
+        >
+          Save Score
+        </button>
+      </div>
     </div>
 
     <script
